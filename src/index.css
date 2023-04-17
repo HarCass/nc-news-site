@@ -80,6 +80,15 @@ ul {
   background-color: rgb(230, 32, 32);
 }
 
+.page-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.home {
+  text-align: center;
+}
+
 @media only screen and (min-width: 700px) {
   body {
     font-size: 22px;
