@@ -20,6 +20,7 @@ const Articles = () => {
                 return <li className="articles-item" key={article.article_id}>
                     <img src={article.article_img_url} alt={`${article.title} image`}></img>
                     <h3>{article.title}</h3>
+                    <p>Posted: {Date(article.created_at)}</p>
                 </li>
             })}
         </ul>
