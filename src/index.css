@@ -27,3 +27,13 @@ body {
 .articles-page {
   text-align: center;
 }
+
+.article-page {
+  text-align: center;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  padding: 10px;
+}
+article{
+  color: black;
+}
