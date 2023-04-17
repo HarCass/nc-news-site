@@ -4,15 +4,30 @@ body {
   font-size: 18px;
   background-color: rgb(255, 248, 239);
   color: rgb(230, 32, 32);
+  text-shadow: 0px 0px black;
+  word-break: break-all;
 }
 
 header {
-  background-color: antiquewhite;
+  background-color: rgb(255, 241, 223);
   border-radius: 5px;
 }
 
 h2 {
   text-align: center;
+}
+
+article {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(230, 32, 32);
+}
+
+button {
+  padding: 5px;
 }
 
 ul {
@@ -46,7 +61,7 @@ ul {
 }
 
 .articles-item {
-  background-color: antiquewhite;
+  background-color: rgb(255, 241, 223);
   border-color: rgb(230, 32, 32);
   border-style: ridge;
   border-radius: 5px;
@@ -60,12 +75,6 @@ ul {
 
 .articles-item img {
   width: 30vw;
-}
-
-.articles-item p {
-  text-align: left;
-  opacity: 0.5;
-  font-size: 0.5em;
 }
 
 .loading{
@@ -91,11 +100,38 @@ ul {
 
 .article-page {
   text-align: center;
-  background-color: antiquewhite;
+  background-color: rgb(255, 241, 223);
   border-radius: 10px;
   padding: 10px;
+  margin: 5px;
 }
-article{
+
+.article-votes button {
+  margin: 2px;
+}
+
+.article-comments {
+  display: grid;
+  place-items: center;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.comments-item {
+  border-style: ridge;
+  border-radius: 5px;
+  border-color: rgb(230, 32, 32);
+  padding: 5px;
+}
+
+.date {
+  text-align: left;
+  opacity: 0.5;
+  font-size: 0.5em;
   color: black;
 }
 

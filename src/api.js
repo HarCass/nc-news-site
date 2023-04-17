@@ -18,3 +18,13 @@ export const getArticleById = (id) => {
     return newsApi.get(`/articles/${id}`)
     .then(res => res.data.article);
 }
+
+export const patchArticleById = (id, data) => {
+    return newsApi.patch(`/articles/${id}`, data)
+    .then(res => res.data.article);
+}
+
+export const getArticleCommentsById = (id) => {
+    return newsApi.get(`/articles/${id}/comments`)
+    .then(res => res.data.comments);
+}

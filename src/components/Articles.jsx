@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getArticles } from "../api";
 import Loading from "./Loading";
 
@@ -7,6 +8,7 @@ const Articles = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     const nextPageHandler = () => {
         document.body.scrollTop = 0;
@@ -18,6 +20,10 @@ const Articles = () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
         setPage(currPage => currPage - 1);
+    }
+
+    const goToArticleHandler = (id) => {
+        navigate(`/articles/${id}`);
     }
 
     useEffect(() => {
@@ -34,10 +40,10 @@ const Articles = () => {
         <h2>Articles</h2>
         <ul className="articles-list">
             {articlesData.map(article => {
-                return <li className="articles-item" key={article.article_id}>
+                return <li className="articles-item" key={article.article_id} onClick={ () => goToArticleHandler(article.article_id)}>
                     <img src={article.article_img_url} alt={`${article.title} image`}></img>
                     <h3>{article.title}</h3>
-                    <p>Posted: {Date(article.created_at)}</p>
+                    <p className="date">Posted: {Date(article.created_at)}</p>
                 </li>
             })}
         </ul>
