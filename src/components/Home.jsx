@@ -23,7 +23,7 @@ const Home = () => {
     useEffect(() => {
         getUsers()
         .then(data => setUsersData(data));
-    });
+    }, []);
 
     return <section className="home">
         <h2>Welcome to NC News</h2>
