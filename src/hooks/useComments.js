@@ -13,7 +13,7 @@ const useComments = (id, limit) => {
             setCommentsData(data.comments);
             setTotalComments(data.total_count);
         })
-        .then(() => setIsLoading(false));
+        .finally(() => setIsLoading(false));
     }, [limit])
     
     return { commentsData, totalComments, isLoading };

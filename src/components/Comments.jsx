@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useComments from "../hooks/useComments";
 import Loading from "./Loading";
+import formatDate from "../utils/formatDate";
 
 const Comments = ({id}) => {
     const [limit, setLimit] = useState(null);
@@ -9,9 +10,9 @@ const Comments = ({id}) => {
 
     return <section className="article-comments">
             <h3>Comments</h3>
-            {isLoading ? <Loading></Loading> : isHidden ? null : <ul className="comments-list">
+            {isLoading ? <Loading></Loading> : isHidden ? null : totalComments === 0 ? <h4>No Comments Yet!</h4> : <ul className="comments-list">
                 {commentsData.map(comment => <li className="comments-item" key={comment.comment_id}>
-                    <p className="date">{Date(comment.created_at)}</p>
+                    <p className="date">{formatDate(comment.created_at)}</p>
                     <article>{comment.body}</article>
                     <p>{comment.author}</p>
                     <div className="comment-votes">

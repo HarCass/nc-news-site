@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { articleCardHover, articleCardHoverEnd } from "../scripts/articleCardHover";
+import formatDate from "../utils/formatDate";
 
 const ArticlesCard = ({ article }) => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const ArticlesCard = ({ article }) => {
         <img src={article.article_img_url} alt={`${article.title} image`}></img>
         <h3>{article.title}</h3>
         <p>{article.topic}</p>
-        <p className="date">Posted: {Date(article.created_at)}</p>
+        <p className="date">Posted: {formatDate(article.created_at)}</p>
     </li>
 }
 
