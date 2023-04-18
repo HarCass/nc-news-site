@@ -161,6 +161,8 @@ ul {
 }
 
 .topics-item {
+  background-color: rgb(255, 241, 223);
+  border-color: rgb(230, 32, 32);
   border-style: ridge;
   border-radius: 10px;
   padding: 5px;
