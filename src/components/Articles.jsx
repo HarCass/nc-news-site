@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { getArticles } from "../api";
+import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Loading from "./Loading";
+import { articleCardHover, articleCardHoverEnd } from "../scripts/articleCardHover";
+import useArticles from "../hooks/useArticles";
 
 const Articles = () => {
-    const [articlesData, setArticlesData] = useState([]);
+    const [searchParams, setSearchparams] = useSearchParams();
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [isLoading, setIsLoading] = useState(true);
+    const { articlesData, totalPages, isLoading } = useArticles(page);
+    const navigate = useNavigate();
 
     const nextPageHandler = () => {
         document.body.scrollTop = 0;
@@ -20,24 +22,19 @@ const Articles = () => {
         setPage(currPage => currPage - 1);
     }
 
-    useEffect(() => {
-        setIsLoading(true);
-        getArticles(page)
-        .then(({articles, total_count}) => {
-            setArticlesData(articles)
-            setTotalPages(Math.ceil(total_count / 10));
-        })
-        .then(() => setIsLoading(false));
-    }, [page]);
+    const goToArticleHandler = (id) => {
+        navigate(`/articles/${id}`);
+    }
 
     return isLoading ? <Loading/> : <section className="articles-page">
         <h2>Articles</h2>
         <ul className="articles-list">
             {articlesData.map(article => {
-                return <li className="articles-item" key={article.article_id}>
+                return <li className="articles-item" id={`articles-item${article.article_id}`} key={article.article_id} onClick={ () => goToArticleHandler(article.article_id)} onMouseEnter={ () => articleCardHover(article.article_id)} onMouseLeave={() => articleCardHoverEnd(article.article_id)}>
                     <img src={article.article_img_url} alt={`${article.title} image`}></img>
                     <h3>{article.title}</h3>
-                    <p>Posted: {Date(article.created_at)}</p>
+                    <p>{article.topic}</p>
+                    <p className="date">Posted: {Date(article.created_at)}</p>
                 </li>
             })}
         </ul>

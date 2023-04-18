@@ -8,7 +8,7 @@ const loadingAnimation = () => {
         scale: 2,
         duration: 1000,
         loop: true
-    });
+    }, []);
 } 
 
 export default loadingAnimation;
