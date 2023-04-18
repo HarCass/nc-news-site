@@ -10,13 +10,15 @@ const Article = () => {
     const {article_id} = useParams();
     const {articleData, isLoading} = useArticle(article_id);
     const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`voted${article_id}`)));
+    const [error, setError] = useState(null);
 
     const upvotehandler = () => {
         const vote = {inc_votes: 1};
         articleData.votes += 1;
         localStorage.setItem(`voted${article_id}`, true);
         setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
-        patchArticleById(article_id, vote);
+        patchArticleById(article_id, vote)
+        .catch(err => setError(err));
     }
 
     const downvoteHandler = () => {
@@ -24,7 +26,8 @@ const Article = () => {
         articleData.votes -= 1;
         localStorage.setItem(`voted${article_id}`, true);
         setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
-        patchArticleById(article_id, vote);
+        patchArticleById(article_id, vote)
+        .catch(err => setError(err));
     }
 
     return isLoading ? <Loading></Loading> : <section className="article-page">
@@ -38,6 +41,7 @@ const Article = () => {
                 <button onClick={upvotehandler} disabled={hasVoted}>Upvote</button>
                 <button onClick={downvoteHandler} disabled={hasVoted}>Downvote</button>
             </div>
+            {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
             <Comments id={article_id} />
         </section>
 }
