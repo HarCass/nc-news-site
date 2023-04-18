@@ -70,6 +70,7 @@ ul {
 
 .articles-item:hover {
   box-shadow: 1px 1px 4px 4px rgb(137, 137, 137);
+  cursor: pointer;
 }
 
 .articles-item img {
