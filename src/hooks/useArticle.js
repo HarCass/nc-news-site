@@ -9,7 +9,7 @@ const useArticle = (id) => {
         setIsLoading(true);
         getArticleById(id)
         .then(data => setArticleData(data))
-        .then(() => setIsLoading(false));
+        .finally(() => setIsLoading(false));
     }, [])
 
     return { articleData, isLoading };

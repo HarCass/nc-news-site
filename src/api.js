@@ -5,7 +5,7 @@ const newsApi = axios.create({
 });
 
 export const getArticles = (page) => {
-    return newsApi.get(`/articles?p=${page}`)
+    return newsApi.get('/articles', { params: {p: page} })
     .then(res => res.data);
 }
 
@@ -24,7 +24,7 @@ export const patchArticleById = (id, data) => {
     .then(res => res.data.article);
 }
 
-export const getArticleCommentsById = (id) => {
-    return newsApi.get(`/articles/${id}/comments`)
-    .then(res => res.data.comments);
+export const getArticleCommentsById = (id, limit) => {
+    return newsApi.get(`/articles/${id}/comments`, { params: { limit } })
+    .then(res => res.data);
 }
