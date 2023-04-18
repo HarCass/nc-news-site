@@ -6,20 +6,25 @@ import useArticles from "../hooks/useArticles";
 
 const Articles = () => {
     const [searchParams, setSearchparams] = useSearchParams();
-    const [page, setPage] = useState(1);
+    const page = searchParams.get('p');
     const { articlesData, totalPages, isLoading } = useArticles(page);
     const navigate = useNavigate();
 
     const nextPageHandler = () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        setPage(currPage => currPage + 1);
+        const newParams = new URLSearchParams(searchParams);
+        const newPage = page ? Number(page) + 1 : 2;
+        newParams.set('p', newPage);
+        setSearchparams(newParams);
     }
 
     const prevPageHandler = () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        setPage(currPage => currPage - 1);
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set('p', Number(page) - 1);
+        setSearchparams(newParams);
     }
 
     const goToArticleHandler = (id) => {
@@ -39,8 +44,8 @@ const Articles = () => {
             })}
         </ul>
         <div className="page-buttons">
-            {page > 1 ? <button onClick={prevPageHandler}>Prev Page</button> : <p></p>}
-            {page === totalPages ? <p></p> : <button onClick={nextPageHandler}>Next Page</button>}
+            <button onClick={prevPageHandler} disabled={page <= 1}>Prev Page</button>
+            <button onClick={nextPageHandler} disabled={page == totalPages}>Next Page</button>
         </div>
     </section>
 }
