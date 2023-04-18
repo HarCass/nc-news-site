@@ -6,6 +6,7 @@ const CommentForm = ({id, setCommentsData}) => {
     const {activeUser, isLoggedIn} = useContext(ActiveUserContext);
     const [body, setBody] = useState('');
     const [hasPosted, setHasPosted] = useState(false);
+    const [error, setError] = useState(null);
 
     const postCommentHandler = (event) => {
         event.preventDefault()
@@ -18,13 +19,21 @@ const CommentForm = ({id, setCommentsData}) => {
         postCommentToArticleById(id, commentObj)
         .then(comment => setCommentsData(currComments => {
             return [comment, ...currComments];
-        }));
+        }))
+        .catch(err => {
+            setError(err);
+        });
     }
 
-    return hasPosted ? <div><h4>Comment Posted!</h4><button onClick={() => setHasPosted(false)}>Post Another Comment</button></div> : <form className="comment-form" onSubmit={postCommentHandler}>
-        <textarea required placeholder={'Write your comment here...'} value={body} onChange={event => setBody(event.target.value)}></textarea>
-        <button disabled={!isLoggedIn}>{isLoggedIn ? 'Submit' : 'Login To Post'}</button>
-    </form>
+    return hasPosted ? <div>
+            {error ? <h4>Something Went Wrong!</h4> : <h4>Comment Posted!</h4>}<button onClick={() => {
+            setHasPosted(false)
+            setError(null);
+            }}>Post Another Comment</button>
+        </div> : <form className="comment-form" onSubmit={postCommentHandler}>
+            <textarea required placeholder={'Write your comment here...'} value={body} onChange={event => setBody(event.target.value)}></textarea>
+            <button disabled={!isLoggedIn}>{isLoggedIn ? 'Submit' : 'Login To Post'}</button>
+        </form>
 }
 
 export default CommentForm;
