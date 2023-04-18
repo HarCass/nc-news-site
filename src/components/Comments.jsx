@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
-import { getArticleCommentsById } from "../api";
+import useComments from "../hooks/useComments";
+import Loading from "./Loading";
 
 const Comments = ({id}) => {
-    const [commentsData, setCommentsData] = useState([]);
-
-    useEffect(() => {
-        getArticleCommentsById(id)
-        .then(data => setCommentsData(data));
-    }, [])
+    const { commentsData, isLoading } = useComments(id); 
 
     return <section className="article-comments">
             <h3>Comments</h3>
-            <ul className="comments-list">
+            {isLoading ? <Loading></Loading> : <ul className="comments-list">
                 {commentsData.map(comment => <li className="comments-item" key={comment.comment_id}>
                     <p className="date">{Date(comment.created_at)}</p>
                     <article>{comment.body}</article>
@@ -19,10 +14,10 @@ const Comments = ({id}) => {
                     <div className="comment-votes">
                         <p style={{color: comment.votes > 0 ? 'green' : 'red'}}>votes: {comment.votes}</p>
                         <button>Upvote</button>
-                        <button>DownVote</button>
+                        <button>Downvote</button>
                     </div>
                 </li>)}
-            </ul>
+            </ul>}
         </section>
 }
 
