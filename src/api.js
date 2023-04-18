@@ -33,3 +33,8 @@ export const postCommentToArticleById = (id, comment) => {
     return newsApi.post(`/articles/${id}/comments`, comment)
     .then(res => res.data.comment);
 }
+
+export const patchCommentById = (id, vote) => {
+    return newsApi.patch(`/comments/${id}`, vote)
+    .then(res => res.data.comment);
+}
