@@ -2,7 +2,7 @@ import { useState } from "react";
 import useComments from "../hooks/useComments";
 import Loading from "./Loading";
 import CommentsCard from "./CommentsCard";
-import CommentForm from "./CommentFrom";
+import CommentForm from "./CommentForm";
 
 const Comments = ({id}) => {
     const [limit, setLimit] = useState(null);
