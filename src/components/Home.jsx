@@ -7,19 +7,20 @@ const Home = () => {
     const [chosenUser, setChosenUser] = useState('');
     const [usersData, setUsersData] = useState([]);
     
-    if (activeUser === '') localStorage.clear();
-    
     const loginHandler = (event) => {
         event.preventDefault();
         if (usersData.find(({username}) => username ===  chosenUser)) {
             setActiveUser(chosenUser);
+            localStorage.setItem('activeUser', chosenUser);
             setIsLoggedIn(true);
         }
     }
 
     const logoutHandler = () => {
-        setActiveUser('');
+        setActiveUser(null);
+        localStorage.removeItem('activeUser');
         setIsLoggedIn(false);
+        localStorage.clear();
     }
 
     const selectChangeHandler = (event) => {

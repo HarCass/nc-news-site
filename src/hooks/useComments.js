@@ -16,7 +16,7 @@ const useComments = (id, limit) => {
         .finally(() => setIsLoading(false));
     }, [limit])
     
-    return { commentsData, totalComments, isLoading };
+    return { commentsData, setCommentsData, totalComments, isLoading };
 }
 
 export default useComments;
