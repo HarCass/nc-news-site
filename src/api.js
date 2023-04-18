@@ -4,8 +4,8 @@ const newsApi = axios.create({
     baseURL: 'https://hc-nc-news-api.onrender.com/api'
 });
 
-export const getArticles = (page) => {
-    return newsApi.get('/articles', { params: {p: page} })
+export const getArticles = (page, topic) => {
+    return newsApi.get('/articles', { params: {p: page, topic} })
     .then(res => res.data);
 }
 
@@ -32,4 +32,9 @@ export const getArticleCommentsById = (id, limit) => {
 export const postCommentToArticleById = (id, comment) => {
     return newsApi.post(`/articles/${id}/comments`, comment)
     .then(res => res.data.comment);
+}
+
+export const getTopics = () => {
+    return newsApi.get('/topics')
+    .then(res => res.data.topics);
 }

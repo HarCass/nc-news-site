@@ -153,6 +153,29 @@ ul {
   height: 30vw;
 }
 
+.topics-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  text-align: center;
+}
+
+.topics-item {
+  border-style: ridge;
+  border-radius: 10px;
+  padding: 5px;
+  flex-grow: 1;
+}
+
+.topics-item:hover {
+  box-shadow: 1px 1px 4px 4px rgb(137, 137, 137);
+  cursor: pointer;
+}
+
+a:hover {
+  color: blue;
+}
+
 @media only screen and (min-width: 700px) {
   body {
     font-size: 22px;

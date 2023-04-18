@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { patchArticleById } from "../api";
 import Loading from "./Loading";
 import Comments from "./Comments";
@@ -27,7 +27,7 @@ const Article = () => {
     return isLoading ? <Loading></Loading> : <section className="article-page">
             <img src={articleData.article_img_url} alt={`${articleData.title} image`}></img>
             <h2>{articleData.title}</h2>
-            <p>{articleData.topic}</p>
+            <Link to={`/topics/${articleData.topic}`}>{articleData.topic[0].toUpperCase() + articleData.topic.slice(1)}</Link>
             <article>{articleData.body}</article>
             <p className="date"> Posted: {formatDate(articleData.created_at)}</p>
             <div className="article-votes">
