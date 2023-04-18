@@ -8,19 +8,21 @@ import useArticle from "../hooks/useArticle";
 const Article = () => {
     const {article_id} = useParams();
     const {articleData, isLoading} = useArticle(article_id);
-    const [hasVoted, setHasVoted] = useState(false);
+    const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`voted${article_id}`)));
 
     const upvotehandler = () => {
         const vote = {inc_votes: 1};
         articleData.votes += 1;
-        setHasVoted(true);
+        localStorage.setItem(`voted${article_id}`, true);
+        setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
         patchArticleById(article_id, vote);
     }
 
     const downvoteHandler = () => {
         const vote = {inc_votes: -1};
         articleData.votes -= 1;
-        setHasVoted(true);
+        localStorage.setItem(`voted${article_id}`, true);
+        setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
         patchArticleById(article_id, vote);
     }
 

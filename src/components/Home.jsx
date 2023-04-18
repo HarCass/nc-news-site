@@ -3,16 +3,23 @@ import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import { getUsers } from "../api";
 
 const Home = () => {
+    const {activeUser, setActiveUser, isLoggedIn , setIsLoggedIn} = useContext(ActiveUserContext);
     const [chosenUser, setChosenUser] = useState('');
     const [usersData, setUsersData] = useState([]);
-    const {activeUser, setActiveUser, isLoggedIn , setIsLoggedIn} = useContext(ActiveUserContext);
-
+    
+    if (activeUser === '') localStorage.clear();
+    
     const loginHandler = (event) => {
         event.preventDefault();
         if (usersData.find(({username}) => username ===  chosenUser)) {
             setActiveUser(chosenUser);
             setIsLoggedIn(true);
         }
+    }
+
+    const logoutHandler = () => {
+        setActiveUser('');
+        setIsLoggedIn(false);
     }
 
     const selectChangeHandler = (event) => {
@@ -36,6 +43,7 @@ const Home = () => {
             </select>
             <button disabled={isLoggedIn}>Login</button>
         </form>
+        <button disabled={!isLoggedIn} onClick={logoutHandler}>Logout</button>
         {isLoggedIn ? <h3>Welcome {activeUser}!</h3> : null}
     </section>
 }
