@@ -13,7 +13,7 @@ const useArticles = (page) => {
             setArticlesData(articles)
             setTotalPages(Math.ceil(total_count / 10));
         })
-        .then(() => setIsLoading(false));
+        .finally(() => setIsLoading(false));
     }, [page]);
 
     return { articlesData, totalPages, isLoading };

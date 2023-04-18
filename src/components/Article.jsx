@@ -4,6 +4,7 @@ import { patchArticleById } from "../api";
 import Loading from "./Loading";
 import Comments from "./Comments";
 import useArticle from "../hooks/useArticle";
+import formatDate from "../utils/formatDate";
 
 const Article = () => {
     const {article_id} = useParams();
@@ -31,7 +32,7 @@ const Article = () => {
             <h2>{articleData.title}</h2>
             <p>{articleData.topic}</p>
             <article>{articleData.body}</article>
-            <p className="date"> Posted: {Date(articleData.created_at)}</p>
+            <p className="date"> Posted: {formatDate(articleData.created_at)}</p>
             <div className="article-votes">
                 <p style={{color: articleData.votes > 0 ? 'green' : 'red'}}>Votes: {articleData.votes}</p>
                 <button onClick={upvotehandler} disabled={hasVoted}>Upvote</button>
