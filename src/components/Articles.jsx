@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import useArticles from "../hooks/useArticles";
 import Loading from "./Loading";
 import ArticlesCard from "./ArticlesCard";
+import ArticlesSort from "./ArticlesSort";
 
 const Articles = () => {
     const [searchParams, setSearchparams] = useSearchParams();
@@ -27,6 +28,7 @@ const Articles = () => {
 
     return isLoading ? <Loading/> : <section className="articles-page">
         <h2>Articles</h2>
+        <ArticlesSort></ArticlesSort>
         <ul className="articles-list">
             {articlesData.map(article => {
                 return <ArticlesCard article={article} key={article.article_id} ></ArticlesCard>
