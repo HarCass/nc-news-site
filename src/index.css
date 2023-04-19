@@ -142,8 +142,25 @@ ul {
   color: black;
 }
 
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.comment-form textarea {
+  width: 50vw;
+  height: 30vw;
+}
+
 @media only screen and (min-width: 700px) {
   body {
     font-size: 22px;
   }
+
+  .comment-form textarea {
+    width: 25vw;
+    height: 15vw;
+  }
+
 }

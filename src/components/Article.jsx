@@ -18,8 +18,11 @@ const Article = () => {
         localStorage.setItem(`voted${article_id}`, true);
         setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
         patchArticleById(article_id, voteObj)
+        .then(() => setError(null))
         .catch(err => {
             setError(err);
+            localStorage.removeItem(`voted${article_id}`, true);
+            setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
             articleData.votes -= vote;
         });
     }
@@ -34,8 +37,8 @@ const Article = () => {
                 <p style={{color: articleData.votes > 0 ? 'green' : 'red'}}>Votes: {articleData.votes}</p>
                 <button onClick={() => voteHandler(1)} disabled={hasVoted}>Upvote</button>
                 <button onClick={() => voteHandler(-1)} disabled={hasVoted}>Downvote</button>
+                {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
             </div>
-            {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
             <Comments id={article_id} />
         </section>
 }

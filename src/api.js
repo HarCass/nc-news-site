@@ -19,12 +19,22 @@ export const getArticleById = (id) => {
     .then(res => res.data.article);
 }
 
-export const patchArticleById = (id, data) => {
-    return newsApi.patch(`/articles/${id}`, data)
+export const patchArticleById = (id, vote) => {
+    return newsApi.patch(`/articles/${id}`, vote)
     .then(res => res.data.article);
 }
 
 export const getArticleCommentsById = (id, limit) => {
     return newsApi.get(`/articles/${id}/comments`, { params: { limit } })
     .then(res => res.data);
+}
+
+export const postCommentToArticleById = (id, comment) => {
+    return newsApi.post(`/articles/${id}/comments`, comment)
+    .then(res => res.data.comment);
+}
+
+export const patchCommentById = (id, vote) => {
+    return newsApi.patch(`/comments/${id}`, vote)
+    .then(res => res.data.comment);
 }
