@@ -34,6 +34,11 @@ export const postCommentToArticleById = (id, comment) => {
     .then(res => res.data.comment);
 }
 
+export const patchCommentById = (id, vote) => {
+    return newsApi.patch(`/comments/${id}`, vote)
+    .then(res => res.data.comment);
+}
+
 export const getTopics = () => {
     return newsApi.get('/topics')
     .then(res => res.data.topics);
