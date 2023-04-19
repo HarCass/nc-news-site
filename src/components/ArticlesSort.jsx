@@ -19,7 +19,7 @@ const ArticlesSort = ({topic, sortBy, order, searchParams, setSearchParams}) => 
             <option value={'asc'}>Ascending</option>
         </select>
         <select className="sort-select" onChange={ev => setQuery(ev, 'sort_by')}>
-            <option>{sortBy ? sortBy[0].toUpperCase() + sortBy.slice(1) : 'Sort By'}</option>
+            <option>Sort By</option>
             <option value={'author'}>Author</option>
             <option value={'created_at'}>Date</option>
             <option value={'comment_count'}>Comments</option>
