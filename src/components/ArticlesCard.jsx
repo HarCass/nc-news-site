@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { articleCardHover, articleCardHoverEnd } from "../scripts/articleCardHover";
 import formatDate from "../utils/formatDate";
+import formatStrToTitle from "../utils/formatStrToTitle";
 
 const ArticlesCard = ({ article }) => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const ArticlesCard = ({ article }) => {
     }} onMouseEnter={ () => articleCardHover(article.article_id)} onMouseLeave={() => articleCardHoverEnd(article.article_id)}>
         <img src={article.article_img_url} alt={`${article.title} image`}></img>
         <h3>{article.title}</h3>
-        <p>{article.topic[0].toUpperCase() + article.topic.slice(1)}</p>
+        <p>{formatStrToTitle(article.topic)}</p>
         <p className="date">Posted: {formatDate(article.created_at)}</p>
     </li>
 }
