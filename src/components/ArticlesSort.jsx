@@ -1,20 +1,38 @@
-import formatProperties from "../utils/formatProperties";
+import useTopics from "../hooks/useTopics";
 
-const ArticlesSort = () => {
+const ArticlesSort = ({topic, sortBy, order, searchParams, setSearchParams}) => {
+    const {topicsData} = useTopics();
+
+    const setQuery = (event, query) => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        const newParams = new URLSearchParams(searchParams);
+        const newQuery = event.target.value;
+        newParams.set(query, newQuery);
+        setSearchParams(newParams);
+    }
+
     return <section className="articles-sort" >
-        <select>
-            <option value={''}>Order</option>
-            <option value={'ASC'}>Ascending</option>
-            <option value={'DESC'}>Descending</option>
+        <select className="order-select" onChange={ev => setQuery(ev, 'order')}>
+            <option>Order</option>
+            <option value={'desc'}>Descending</option>
+            <option value={'asc'}>Ascending</option>
         </select>
-        <select>
-            <option value={''}>Sort By</option>
+        <select className="sort-select" onChange={ev => setQuery(ev, 'sort_by')}>
+            <option>{sortBy ? sortBy[0].toUpperCase() + sortBy.slice(1) : 'Sort By'}</option>
+            <option value={'author'}>Author</option>
+            <option value={'created_at'}>Date</option>
+            <option value={'comment_count'}>Comments</option>
+            <option value={'votes'}>Votes</option>
             <option value={'title'}>Title</option>
             <option value={'topic'}>Topic</option>
         </select>
-        <select>
-            <option>topic</option>
+        <select className="topic-select" onChange={ev => setQuery(ev, 'topic')}>
+            <option>Topic</option>
+            <option value={''}>All</option>
+            {topicsData.map(({slug}) => <option value={slug} key={slug}>{slug[0].toUpperCase() + slug.slice(1)}</option>)}
         </select>
+        <button onClick={() => setSearchParams('')}>Reset All</button>
     </section>
 }
 

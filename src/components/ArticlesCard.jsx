@@ -14,7 +14,7 @@ const ArticlesCard = ({ article }) => {
     }} onMouseEnter={ () => articleCardHover(article.article_id)} onMouseLeave={() => articleCardHoverEnd(article.article_id)}>
         <img src={article.article_img_url} alt={`${article.title} image`}></img>
         <h3>{article.title}</h3>
-        <p>{article.topic}</p>
+        <p>{article.topic[0].toUpperCase() + article.topic.slice(1)}</p>
         <p className="date">Posted: {formatDate(article.created_at)}</p>
     </li>
 }
