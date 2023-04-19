@@ -1,13 +1,14 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import useArticles from "../hooks/useArticles";
 import Loading from "./Loading";
 import ArticlesCard from "./ArticlesCard";
 import PageButtons from "./PageButtons";
 
 const Articles = () => {
+    const { topic_name } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
     const page = searchParams.get('p');
-    const { articlesData, totalPages, isLoading } = useArticles(page);
+    const { articlesData, totalPages, isLoading } = useArticles(page, topic_name);
 
     return isLoading ? <Loading/> : <section className="articles-page">
         <h2>Articles</h2>
