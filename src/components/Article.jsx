@@ -40,7 +40,7 @@ const Article = () => {
                 <button onClick={() => voteHandler(-1)} disabled={hasVoted}>Downvote</button>
                 {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
             </div>
-            <Comments id={article_id} />
+            <Comments articleId={article_id} />
         </section>
 }
 
