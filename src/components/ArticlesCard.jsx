@@ -16,6 +16,10 @@ const ArticlesCard = ({ article }) => {
         <img src={article.article_img_url} alt={`${article.title} image`}></img>
         <h3>{article.title}</h3>
         <p>{formatStrToTitle(article.topic)}</p>
+        <div className="articles-stats">
+            <p>{article.comment_count} <i className="fa fa-comments-o" aria-hidden="true"></i></p>
+            <p style={{color: article.votes > -1 ? 'green' : 'red'}}>{article.votes} {article.votes > -1 ? <i className="fa fa-thumbs-o-up" aria-hidden="true"></i> : <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>}</p>
+        </div>
         <p className="date">Posted: {formatDate(article.created_at)}</p>
     </li>
 }

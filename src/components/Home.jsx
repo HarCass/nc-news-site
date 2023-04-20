@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
-import { getUsers } from "../api";
+import useUsers from "../hooks/useUsers";
 
 const Home = () => {
     const {activeUser, setActiveUser, isLoggedIn , setIsLoggedIn} = useContext(ActiveUserContext);
     const [chosenUser, setChosenUser] = useState('');
-    const [usersData, setUsersData] = useState([]);
+    const {usersData} = useUsers();
     
     const loginHandler = (event) => {
         event.preventDefault();
@@ -27,11 +27,6 @@ const Home = () => {
         const newUser = event.target.value;
         setChosenUser(newUser);
     }
-
-    useEffect(() => {
-        getUsers()
-        .then(data => setUsersData(data));
-    }, []);
 
     return <section className="home">
         <h2>Welcome to NC News</h2>

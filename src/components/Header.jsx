@@ -6,16 +6,17 @@ const Header = () => {
     const { activeUser, isLoggedIn } = useContext(ActiveUserContext);
 
     return <header>
-        <h1><i class="fa fa-newspaper-o" aria-hidden="true"></i> NC News</h1>
+        <h1><i className="fa fa-newspaper-o" aria-hidden="true"></i> NC News</h1>
         <nav className="navbar">
             <ul className="nav-list">
                 <li className='nav-item'><Link to="/">Home</Link></li>
                 <li className='nav-item'><Link to="/articles">Articles</Link></li>
                 <li className='nav-item'><Link to="/topics">Topics</Link></li>
+                <li className='nav-item'><Link to="/users">Users</Link></li>
             </ul>
         </nav>
         {isLoggedIn ? <div className="active-user-profile">
-            <h3>User: {activeUser}</h3>
+            <h4>User: {activeUser}</h4>
         </div> : <Link to="/">Login Here!</Link>}
     </header>
 }

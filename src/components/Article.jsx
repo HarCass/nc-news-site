@@ -13,6 +13,7 @@ const Article = () => {
     return isError ? <h2>{`${isError.status}: ${isError.data.msg}`}</h2> : isLoading ? <Loading></Loading> : <section className="article-page">
             <img src={articleData.article_img_url} alt={`${articleData.title} image`}></img>
             <h2>{articleData.title}</h2>
+            <p className="article-author">By {articleData.author}</p>
             <Link to={`/articles?topic=${articleData.topic}`}>{formatStrToTitle(articleData.topic)}</Link>
             <article>{articleData.body}</article>
             <p className="date"> Posted: {formatDate(articleData.created_at)}</p>

@@ -26,6 +26,7 @@ h2 {
 a {
   text-decoration: none;
   position: relative;
+  color: #eb1b24;
 }
 
 a:after{ 
@@ -46,6 +47,11 @@ a:hover:after {
   left: 0; 
 }
 
+header h4 {
+  margin: 0;
+  margin-left: 10px;
+}
+
 header a {
   margin-left: 10px;
   color: white;
@@ -56,7 +62,43 @@ header a:hover {
 }
 
 button {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  background-color: white;
+  color: #eb1b24;
+  border:#eb1b24 ridge 1px;
+  border-radius: 5px;
   padding: 5px;
+  transition: 0.1s;
+  box-shadow: 0 5px rgb(189, 189, 189);
+}
+
+button:hover {
+  background-color: #eb1b24;
+  color: white;
+  cursor: pointer;
+}
+
+button:active {
+  box-shadow: 0 1px rgb(137, 137, 137);
+  transform: translateY(4px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+button:disabled:hover {
+  cursor: default;
+  background-color: white;
+  color: #eb1b24;
+}
+
+label {
+  color: #eb1b24;
 }
 
 ul {
@@ -108,6 +150,11 @@ ul {
   width: 30vw;
 }
 
+.articles-stats {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .loading{
   display: flex;
   align-items: baseline;
@@ -123,6 +170,10 @@ ul {
 .page-buttons {
   display: flex;
   justify-content: space-around;
+}
+
+.page-count {
+  margin: 0;
 }
 
 .home {
@@ -148,11 +199,15 @@ ul {
 }
 
 .article-page a::after {
-  background: #222;
+  background: #eb1b24;
 }
 
 .article-page a:visited {
-  color: #222;
+  color: #eb1b24;
+}
+
+.article-author {
+  margin-top: 0;
 }
 
 .article-votes button {
@@ -183,13 +238,14 @@ ul {
 .date {
   text-align: left;
   opacity: 0.5;
-  font-size: 0.5em;
+  font-size: 0.6em;
   color: black;
 }
 
 .comment-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5px;
 }
 
@@ -198,6 +254,14 @@ ul {
   resize: none;
   width: 70vw;
   height: 30vw;
+}
+
+.comment-form button {
+  width: 50%;
+}
+
+.comment-votes button {
+  margin: 5px;
 }
 
 .topics-list {
@@ -221,6 +285,8 @@ ul {
 }
 
 .articles-sort {
+  display: inline-flex;
+  align-items: center;
   font-size: 14px;
 }
 
@@ -229,17 +295,39 @@ ul {
 }
 
 .articles-sort label {
-  padding-left: 3px;
-  padding-right: 2px;
+  margin-left: 3px;
+  margin-right: 2px;
 }
 .articles-sort button {
-  padding: 0;
+  padding: 2px;
   margin-left: 5px;
   font-size: 8px;
 }
 
 .delete-comment button {
   margin-top: 25px;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.users-item {
+  border: black ridge;
+  border-radius: 5px;
+  padding: 10px;
+}
+.users-item:hover {
+  box-shadow: 1px 1px 4px 4px rgb(137, 137, 137);
+  cursor: pointer;
+}
+
+.users-item img {
+  width: 50%;
 }
 
 @media only screen and (min-width: 700px) {
@@ -257,7 +345,7 @@ ul {
   }
   
   .articles-sort select{
-    font-size: default;
+    font-size: small;
   }
 
   .article-page {
@@ -265,13 +353,18 @@ ul {
     padding-right: 100px;
   }
 
+  .article-page img {
+    width: max-content;
+  }
+
   .articles-sort label {
-    padding-left: 15px;
-    padding-right: 5px;
+    margin-left: 10px;
+    margin-right: 3px;
   }
   .articles-sort button {
-    padding: 0;
+    font-size: small;
     margin-left: 15px;
+    padding: 3px;
   }
   
   .delete-comment button {
