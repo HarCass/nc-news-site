@@ -4,20 +4,20 @@ import { patchCommentById } from "../api";
 import DeleteComment from "../components/DeleteComment";
 
 const CommentsCard = ({comment}) => {
-    const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`voted${comment.article_id}${comment.comment_id}`)));
+    const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`votedcomment${comment.comment_id}`)));
     const [error, setError] = useState(null);
 
     const voteHandler = (vote) => {
         const voteObj = {inc_votes: vote};
         comment.votes += vote;
-        localStorage.setItem(`voted${comment.article_id}${comment.comment_id}`, true);
-        setHasVoted(Boolean(localStorage.getItem(`voted${comment.article_id}${comment.comment_id}`)));
+        localStorage.setItem(`votedcomment${comment.comment_id}`, true);
+        setHasVoted(Boolean(localStorage.getItem(`votedcomment${comment.comment_id}`)));
         patchCommentById(comment.comment_id, voteObj)
         .then(() => setError(null))
         .catch(err => {
             setError(err);
-            localStorage.removeItem(`voted${comment.article_id}${comment.comment_id}`, true);
-            setHasVoted(Boolean(localStorage.getItem(`voted${comment.article_id}${comment.comment_id}`)));
+            localStorage.removeItem(`votedcomment${comment.comment_id}`, true);
+            setHasVoted(Boolean(localStorage.getItem(`votedcomment${comment.comment_id}`)));
             comment.votes -= vote;
         });
     }

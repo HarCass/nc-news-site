@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import Comments from "./Comments";
 import useArticle from "../hooks/useArticle";
 import formatDate from "../utils/formatDate";
+import formatStrToTitle from "../utils/formatStrToTitle";
 
 const Article = () => {
     const {article_id} = useParams();
@@ -30,7 +31,7 @@ const Article = () => {
     return isLoading ? <Loading></Loading> : <section className="article-page">
             <img src={articleData.article_img_url} alt={`${articleData.title} image`}></img>
             <h2>{articleData.title}</h2>
-            <Link to={`/topics/${articleData.topic}`}>{articleData.topic[0].toUpperCase() + articleData.topic.slice(1)}</Link>
+            <Link to={`/articles?topic=${articleData.topic}`}>{formatStrToTitle(articleData.topic)}</Link>
             <article>{articleData.body}</article>
             <p className="date"> Posted: {formatDate(articleData.created_at)}</p>
             <div className="article-votes">
