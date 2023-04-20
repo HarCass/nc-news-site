@@ -233,7 +233,7 @@ ul {
   padding-right: 2px;
 }
 .articles-sort button {
-  padding: 0;
+  padding: 1px;
   margin-left: 5px;
   font-size: 8px;
 }
@@ -257,7 +257,7 @@ ul {
   }
   
   .articles-sort select{
-    font-size: default;
+    font-size: small;
   }
 
   .article-page {
@@ -270,7 +270,7 @@ ul {
     padding-right: 5px;
   }
   .articles-sort button {
-    padding: 0;
+    font-size: small;
     margin-left: 15px;
   }
   
