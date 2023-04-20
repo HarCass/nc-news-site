@@ -9,7 +9,7 @@ import formatStrToTitle from "../utils/formatStrToTitle";
 
 const Article = () => {
     const {article_id} = useParams();
-    const {articleData, isLoading} = useArticle(article_id);
+    const {articleData, isLoading, isError} = useArticle(article_id);
     const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`voted${article_id}`)));
     const [error, setError] = useState(null);
 
@@ -28,7 +28,7 @@ const Article = () => {
         });
     }
 
-    return isLoading ? <Loading></Loading> : <section className="article-page">
+    return isError ? <h2>{`${isError.status}: ${isError.data.msg}`}</h2> : isLoading ? <Loading></Loading> : <section className="article-page">
             <img src={articleData.article_img_url} alt={`${articleData.title} image`}></img>
             <h2>{articleData.title}</h2>
             <Link to={`/articles?topic=${articleData.topic}`}>{formatStrToTitle(articleData.topic)}</Link>
