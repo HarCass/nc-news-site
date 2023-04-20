@@ -178,13 +178,17 @@ a:hover {
   color: blue;
 }
 
-.articles-sort label{
+.articles-sort label {
   padding-left: 15px;
   padding-right: 5px;
 }
-.articles-sort button{
+.articles-sort button {
   padding: 0;
   margin-left: 5px;
+}
+
+.delete-comment button {
+  margin-top: 25px;
 }
 
 @media only screen and (min-width: 700px) {

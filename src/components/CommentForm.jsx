@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import { postCommentToArticleById } from "../api";
 
-const CommentForm = ({id, setCommentsData}) => {
+const CommentForm = ({articleId, setCommentsData}) => {
     const {activeUser, isLoggedIn} = useContext(ActiveUserContext);
     const [body, setBody] = useState('');
     const [hasPosted, setHasPosted] = useState(false);
@@ -16,7 +16,7 @@ const CommentForm = ({id, setCommentsData}) => {
         }
         setBody('');
         setHasPosted(true);
-        postCommentToArticleById(id, commentObj)
+        postCommentToArticleById(articleId, commentObj)
         .then(comment => setCommentsData(currComments => {
             return [comment, ...currComments];
         }))
