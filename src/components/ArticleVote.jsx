@@ -43,7 +43,7 @@ const ArticleVote = ({articleData}) => {
     }
 
     return <div className="article-votes">
-        <p style={{color: articleData.votes > 0 ? 'green' : 'red'}}>Votes: {articleData.votes}</p>
+        <p style={{color: articleData.votes > -1 ? 'green' : 'red'}}>{articleData.votes} {articleData.votes > -1 ? <i className="fa fa-thumbs-o-up" aria-hidden="true"></i> : <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>}</p>
         <button onClick={() => voteHandler(1)} disabled={hasUpvoted}>Upvote</button>
         <button onClick={() => voteHandler(-1)} disabled={hasDownvoted}>Downvote</button>
         {isError ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}

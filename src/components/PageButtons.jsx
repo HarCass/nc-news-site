@@ -11,6 +11,7 @@ const PageButtons = ({page, totalPages, searchParams, setSearchParams}) => {
 
     return <div className="page-buttons">
         <button onClick={() => nextPageHandler(-1)} disabled={page <= 1}>Prev Page</button>
+        <p className="page-count">{page || 1}/{totalPages}</p>
         <button onClick={() => nextPageHandler(1)} disabled={page == totalPages}>Next Page</button>
     </div>
 }
