@@ -11,10 +11,11 @@ function App() {
     <div className="App">
       <Header></Header>
       <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
+        <Route exact path="/" element={<Home></Home>}></Route>
         <Route path="/articles" element={<Articles></Articles>}></Route>
-        <Route path="/articles/:article_id" element={<Article></Article>}></Route>
+        <Route path="/articles/:article_id" element={<Article></Article>} errorElement={<h2>404</h2>}></Route>
         <Route path="/topics" element={<Topics></Topics>}></Route>
+        <Route path="/:any" element={<h2>404</h2>}></Route>
       </Routes>
     </div>
   )
