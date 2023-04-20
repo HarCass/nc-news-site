@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/articles" element={<Articles></Articles>}></Route>
-        <Route path="/articles/:article_id" element={<Article></Article>} errorElement={<h2>404</h2>}></Route>
+        <Route path="/articles/:article_id" element={<Article></Article>}></Route>
         <Route path="/topics" element={<Topics></Topics>}></Route>
         <Route path="/*" element={<h2>404: Page Not Found</h2>}></Route>
       </Routes>
