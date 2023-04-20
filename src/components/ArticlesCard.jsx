@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { articleCardHover, articleCardHoverEnd } from "../scripts/articleCardHover";
+import { cardHover, cardHoverEnd } from "../scripts/cardHover";
 import formatDate from "../utils/formatDate";
 import formatStrToTitle from "../utils/formatStrToTitle";
 
@@ -12,7 +12,7 @@ const ArticlesCard = ({ article }) => {
 
     return <li className="articles-item" id={`articles-item${article.article_id}`} tabIndex="0" onClick={ () => goToArticleHandler(article.article_id)} onKeyDown={(event) => {
         if (event.key === 'Enter') goToArticleHandler(article.article_id);
-    }} onMouseEnter={ () => articleCardHover(article.article_id)} onMouseLeave={() => articleCardHoverEnd(article.article_id)}>
+    }} onMouseEnter={ () => cardHover(`#articles-item${article.article_id}`)} onMouseLeave={() => cardHoverEnd(`#articles-item${article.article_id}`)}>
         <img src={article.article_img_url} alt={`${article.title} image`}></img>
         <h3>{article.title}</h3>
         <p>{formatStrToTitle(article.topic)}</p>

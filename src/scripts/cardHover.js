@@ -1,16 +1,16 @@
 import anime from "animejs";
 
-export const articleCardHover = (id) => {
+export const cardHover = (target) => {
     anime({
-        targets: `#articles-item${id}`,
+        targets: target,
         scale: 1.01,
         duration: 500,
     }, []);
 }
 
-export const articleCardHoverEnd = (id) => {
+export const cardHoverEnd = (target) => {
     anime({
-        targets: `#articles-item${id}`,
+        targets: target,
         scale: 1,
         duration: 500,
     }, []);

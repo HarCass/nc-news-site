@@ -16,13 +16,13 @@ const ArticlesSort = ({topic, sortBy, order, searchParams, setSearchParams}) => 
     return <section className="articles-sort" >
         <label htmlFor="order-select">Order</label>
         <select id="order-select" className="articles-select" onChange={ev => setQuery(ev, 'order')}>
-            <option>{order ? formatStrToTitle(order) : 'Order'}</option>
+            <option>{order ? formatStrToTitle(order) : 'Order...'}</option>
             <option value={'desc'}>Desc</option>
             <option value={'asc'}>Asc</option>
         </select>
         <label htmlFor="sort-select">Sort By</label>
         <select id="sort-select" className="articles-select" onChange={ev => setQuery(ev, 'sort_by')}>
-            <option>{sortBy ? formatStrToTitle(sortBy) : 'Sort By'}</option>
+            <option>{sortBy ? formatStrToTitle(sortBy) : 'Sort By...'}</option>
             <option value={'author'}>Author</option>
             <option value={'created_at'}>Date</option>
             <option value={'comment_count'}>Comments</option>
@@ -32,8 +32,8 @@ const ArticlesSort = ({topic, sortBy, order, searchParams, setSearchParams}) => 
         </select>
         <label htmlFor="topic-select">Topic</label>
         <select id="topic-select" className="articles-select" onChange={ev => setQuery(ev, 'topic')}>
-            <option>{topic ? formatStrToTitle(topic) : 'Topic'}</option>
-            {topicsData.map(({slug}) => <option value={slug} key={slug}>{slug[0].toUpperCase() + slug.slice(1)}</option>)}
+            <option>{topic ? formatStrToTitle(topic) : 'Topic...'}</option>
+            {topicsData.map(({slug}) => <option value={slug} key={slug}>{formatStrToTitle(slug)}</option>)}
             <option value={''}>All</option>
         </select>
         <button onClick={() => setSearchParams('')}>Reset All</button>
