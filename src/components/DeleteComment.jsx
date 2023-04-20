@@ -17,6 +17,7 @@ const DeleteComment = ({author, commentId, setIsDeleted}) => {
             })
             .catch(err => {
                 setIsError(err);
+                setHasClicked(false);
             });
         }
     }
