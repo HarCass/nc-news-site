@@ -20,7 +20,7 @@ const DeleteComment = ({author, commentId}) => {
     
     if (isDeleted) return <h3>Comment Deleted</h3>
     return <div className="delete-comment">
-        {activeUser === author ? <button onClick={delhandler}>Delete Comment</button> : null}
+        {activeUser === author ? <button onClick={delhandler}>Delete</button> : null}
         {isError ? <h4>Something Went Wrong With Deletion</h4> : null}
     </div>
 }
