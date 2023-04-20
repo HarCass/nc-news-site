@@ -32,7 +32,7 @@ const CommentsCard = ({comment}) => {
         <button onClick={() => voteHandler(-1)} disabled={hasVoted}>Downvote</button>
         {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
     </div>
-    <DeleteComment author={comment.author}></DeleteComment>
+    <DeleteComment author={comment.author} commentId={comment.comment_id}></DeleteComment>
 </li>
 }
 
