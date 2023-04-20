@@ -2,25 +2,27 @@ import { useContext, useState } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import { delCommentById } from "../api";
 
-const DeleteComment = ({author, commentId}) => {
+const DeleteComment = ({author, commentId, setIsDeleted}) => {
     const {activeUser} = useContext(ActiveUserContext);
-    const [isDeleted, setIsDeleted] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState(null);
+    const [hasClicked, setHasClicked] = useState(false);
 
     const delhandler = () => {
-        delCommentById(commentId)
-        .then(() => {
-            setIsDeleted(true);
-            setIsError(false);
-        })
-        .catch(err => {
-            setIsError(err);
-        });
+        if (!hasClicked) {
+            setHasClicked(true);
+            delCommentById(commentId)
+            .then(() => {
+                setIsDeleted(true);
+                setIsError(null);
+            })
+            .catch(err => {
+                setIsError(err);
+            });
+        }
     }
-    
-    if (isDeleted) return <h3>Comment Deleted</h3>
+
     return <div className="delete-comment">
-        {activeUser === author ? <button onClick={delhandler}>Delete</button> : null}
+        {activeUser === author ? <button disabled={hasClicked} onClick={delhandler}>Delete</button> : null}
         {isError ? <h4>Something Went Wrong With Deletion</h4> : null}
     </div>
 }
