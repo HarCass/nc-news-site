@@ -15,14 +15,12 @@ const ArticlesSort = ({topic, sortBy, order, searchParams, setSearchParams}) => 
 
     return <section className="articles-sort" >
         <label htmlFor="order-select">Order</label>
-        <select id="order-select" className="articles-select" onChange={ev => setQuery(ev, 'order')}>
-            <option>{order ? formatStrToTitle(order) : 'Order...'}</option>
+        <select id="order-select" className="articles-select" defaultValue={order || 'desc'} onChange={ev => setQuery(ev, 'order')}>
             <option value={'desc'}>Desc</option>
             <option value={'asc'}>Asc</option>
         </select>
         <label htmlFor="sort-select">Sort By</label>
-        <select id="sort-select" className="articles-select" onChange={ev => setQuery(ev, 'sort_by')}>
-            <option>{sortBy ? formatStrToTitle(sortBy) : 'Sort By...'}</option>
+        <select id="sort-select" className="articles-select" defaultValue={sortBy || 'created_at'} onChange={ev => setQuery(ev, 'sort_by')}>
             <option value={'author'}>Author</option>
             <option value={'created_at'}>Date</option>
             <option value={'comment_count'}>Comments</option>
@@ -31,8 +29,7 @@ const ArticlesSort = ({topic, sortBy, order, searchParams, setSearchParams}) => 
             <option value={'topic'}>Topic</option>
         </select>
         <label htmlFor="topic-select">Topic</label>
-        <select id="topic-select" className="articles-select" onChange={ev => setQuery(ev, 'topic')}>
-            <option>{topic ? formatStrToTitle(topic) : 'Topic...'}</option>
+        <select id="topic-select" className="articles-select" value={topic || ''} onChange={ev => setQuery(ev, 'topic')}>
             {topicsData.map(({slug}) => <option value={slug} key={slug}>{formatStrToTitle(slug)}</option>)}
             <option value={''}>All</option>
         </select>
