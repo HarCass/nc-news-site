@@ -9,9 +9,9 @@ import formatStrToTitle from "../utils/formatStrToTitle";
 
 const Article = () => {
     const {article_id} = useParams();
-    const {articleData, isLoading} = useArticle(article_id);
+    const {articleData, isLoading, isError} = useArticle(article_id);
     const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`voted${article_id}`)));
-    const [error, setError] = useState(null);
+    const [voteError, setVoteError] = useState(null);
 
     const voteHandler = (vote) => {
         const voteObj = {inc_votes: vote};
@@ -19,16 +19,16 @@ const Article = () => {
         localStorage.setItem(`voted${article_id}`, true);
         setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
         patchArticleById(article_id, voteObj)
-        .then(() => setError(null))
+        .then(() => setVoteError(null))
         .catch(err => {
-            setError(err);
+            setVoteError(err);
             localStorage.removeItem(`voted${article_id}`, true);
             setHasVoted(Boolean(localStorage.getItem(`voted${article_id}`)));
             articleData.votes -= vote;
         });
     }
 
-    return isLoading ? <Loading></Loading> : <section className="article-page">
+    return isError ? <h2>{`${isError.status}: ${isError.data.msg}`}</h2> : isLoading ? <Loading></Loading> : <section className="article-page">
             <img src={articleData.article_img_url} alt={`${articleData.title} image`}></img>
             <h2>{articleData.title}</h2>
             <Link to={`/articles?topic=${articleData.topic}`}>{formatStrToTitle(articleData.topic)}</Link>
@@ -38,7 +38,7 @@ const Article = () => {
                 <p style={{color: articleData.votes > 0 ? 'green' : 'red'}}>Votes: {articleData.votes}</p>
                 <button onClick={() => voteHandler(1)} disabled={hasVoted}>Upvote</button>
                 <button onClick={() => voteHandler(-1)} disabled={hasVoted}>Downvote</button>
-                {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
+                {voteError ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
             </div>
             <Comments articleId={article_id} />
         </section>
