@@ -1,28 +1,58 @@
 body {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'EB Garamond', serif;
   line-height: 1.5;
   font-size: 18px;
-  background-color: rgb(255, 248, 239);
-  color: rgb(230, 32, 32);
-  text-shadow: 0px 0px black;
+  background-color: white;
+  color: #222;
 }
 
 header {
-  background-color: rgb(255, 241, 223);
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #eb1b24;
+  color: white;
+  padding: 5px;
   border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
 }
 
 h2 {
   text-align: center;
 }
 
-article {
-  color: black;
-}
-
 a {
   text-decoration: none;
-  color: rgb(230, 32, 32);
+  position: relative;
+}
+
+a:after{ 
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+header a {
+  margin-left: 10px;
+  color: white;
+}
+
+header a:hover {
+  color: white;
 }
 
 button {
@@ -36,8 +66,6 @@ ul {
 
 .nav-list {
   display: flex;
-  border-style: ridge;
-  border-color: black;
   border-radius: 10px;
   width: fit-content;
 }
@@ -48,7 +76,12 @@ ul {
 }
 
 .nav-item {
-  padding: 5px;
+  display: table-cell; 
+  position: relative;
+}
+
+.nav-item a {
+  display: inline-block;
 }
 
 .articles-list {
@@ -60,9 +93,7 @@ ul {
 }
 
 .articles-item {
-  background-color: rgb(255, 241, 223);
-  border-color: rgb(230, 32, 32);
-  border-style: ridge;
+  border: black ridge;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
@@ -86,7 +117,7 @@ ul {
 .loading-box {
   height: 0.25em;
   width: 0.25em;
-  background-color: rgb(230, 32, 32);
+  background-color: #222;
 }
 
 .page-buttons {
@@ -98,16 +129,30 @@ ul {
   text-align: center;
 }
 
+.home select {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .article-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
   text-align: center;
-  background-color: rgb(255, 241, 223);
   border-radius: 10px;
-  padding: 10px;
-  margin: 5px;
+  padding: 25px;
 }
 
 .article-page img {
   width: 80vw;
+}
+
+.article-page a::after {
+  background: #222;
+}
+
+.article-page a:visited {
+  color: #222;
 }
 
 .article-votes button {
@@ -129,7 +174,7 @@ ul {
 .comments-item {
   border-style: ridge;
   border-radius: 5px;
-  border-color: rgb(230, 32, 32);
+  border-color: black;
   padding: 5px;
   height: min-content;
   width: 70vw;
@@ -149,7 +194,9 @@ ul {
 }
 
 .comment-form textarea {
-  width: 50vw;
+  margin-top: 5px;
+  resize: none;
+  width: 70vw;
   height: 30vw;
 }
 
@@ -161,8 +208,7 @@ ul {
 }
 
 .topics-item {
-  background-color: rgb(255, 241, 223);
-  border-color: rgb(230, 32, 32);
+  border-color: black;
   border-style: ridge;
   border-radius: 10px;
   padding: 5px;
@@ -174,17 +220,22 @@ ul {
   cursor: pointer;
 }
 
-a:hover {
-  color: blue;
+.articles-sort {
+  font-size: 14px;
+}
+
+.articles-sort select{
+  font-size: 12px;
 }
 
 .articles-sort label {
-  padding-left: 15px;
-  padding-right: 5px;
+  padding-left: 3px;
+  padding-right: 2px;
 }
 .articles-sort button {
   padding: 0;
   margin-left: 5px;
+  font-size: 8px;
 }
 
 .delete-comment button {
@@ -197,8 +248,34 @@ a:hover {
   }
 
   .comment-form textarea {
-    width: 25vw;
+    width: 70vw;
     height: 15vw;
+  }
+
+  .articles-sort {
+    font-size: 22px;
+  }
+  
+  .articles-sort select{
+    font-size: default;
+  }
+
+  .article-page {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .articles-sort label {
+    padding-left: 15px;
+    padding-right: 5px;
+  }
+  .articles-sort button {
+    padding: 0;
+    margin-left: 15px;
+  }
+  
+  .delete-comment button {
+    margin-top: 25px;
   }
 
 }

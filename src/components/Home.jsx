@@ -35,7 +35,7 @@ const Home = () => {
 
     return <section className="home">
         <h2>Welcome to NC News</h2>
-        <p>For the purposes of this site login by slecting one of the users below, thank you!</p>
+        <p>For the purposes of this site login by selecting one of the users below, thank you!</p>
         <form onSubmit={loginHandler}>
             <label htmlFor="user-selector">Username</label>
             <select id="user-selector" required onChange={selectChangeHandler}>
