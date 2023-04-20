@@ -1,6 +1,7 @@
 import { useState } from "react";
 import formatDate from "../utils/formatDate";
 import { patchCommentById } from "../api";
+import DeleteComment from "../components/DeleteComment";
 
 const CommentsCard = ({comment}) => {
     const [hasVoted, setHasVoted] = useState(Boolean(localStorage.getItem(`voted${comment.article_id}${comment.comment_id}`)));
@@ -31,6 +32,7 @@ const CommentsCard = ({comment}) => {
         <button onClick={() => voteHandler(-1)} disabled={hasVoted}>Downvote</button>
         {error ? <h4 style={{color: 'black'}}>Something Went Wrong With Your Vote!</h4> : null}
     </div>
+    <DeleteComment author={comment.author}></DeleteComment>
 </li>
 }
 
