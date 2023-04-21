@@ -5,12 +5,15 @@ import useArticle from "../hooks/useArticle";
 import formatDate from "../utils/formatDate";
 import formatStrToTitle from "../utils/formatStrToTitle";
 import ArticleVote from "./ArticleVote";
+import DeleteArticle from "./DeleteArticle";
+import { useState } from "react";
 
 const Article = () => {
     const {article_id} = useParams();
     const {articleData, isLoading, isError} = useArticle(article_id);
+    const [isDeleted, setIsDeleted] = useState(false);
     
-    return isError ? <h2>{`${isError.status}: ${isError.data.msg}`}</h2> : isLoading ? <Loading></Loading> : <section className="article-page">
+    return isDeleted ? <h2>Article Deleted Succsessfully</h2> : isError ? <h2>{`${isError.status}: ${isError.data.msg}`}</h2> : isLoading ? <Loading></Loading> : <section className="article-page">
             <img src={articleData.article_img_url} alt={`${articleData.title} image`}></img>
             <h2>{articleData.title}</h2>
             <p className="article-author">By {articleData.author}</p>
@@ -18,6 +21,7 @@ const Article = () => {
             <article>{articleData.body}</article>
             <p className="date"> Posted: {formatDate(articleData.created_at)}</p>
             <ArticleVote articleData={articleData}></ArticleVote>
+            <DeleteArticle author={articleData.author} articleId={article_id} setIsDeleted={setIsDeleted}></DeleteArticle>
             <Comments articleId={article_id} />
         </section>
 }

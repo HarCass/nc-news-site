@@ -57,3 +57,7 @@ export const postTopic = (topic) => {
     return newsApi.post('/topics', topic)
     .then(res => res.data.topic);
 }
+
+export const delArticleById = (id) => {
+    return newsApi.delete(`/articles/${id}`);
+}

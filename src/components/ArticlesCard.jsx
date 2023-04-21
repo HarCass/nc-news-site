@@ -15,6 +15,7 @@ const ArticlesCard = ({ article }) => {
     }} onMouseEnter={ () => cardHover(`#articles-item${article.article_id}`)} onMouseLeave={() => cardHoverEnd(`#articles-item${article.article_id}`)}>
         <img src={article.article_img_url} alt={`${article.title} image`}></img>
         <h3>{article.title}</h3>
+        <p>By {article.author}</p>
         <p>{formatStrToTitle(article.topic)}</p>
         <div className="articles-stats">
             <p>{article.comment_count} <i className="fa fa-comments-o" aria-hidden="true"></i></p>

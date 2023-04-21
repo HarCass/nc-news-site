@@ -447,6 +447,31 @@ ul {
   height: 10vh;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  border: #EA151F ridge;
+  border-radius: 10px;
+  width: 50vw;
+  height: 35vh;
+}
+.modal-content button {
+  margin: 10px;
+}
+
 @media only screen and (min-width: 700px) {
   body {
     font-size: 22px;
