@@ -269,11 +269,16 @@ ul {
   margin: 5px;
 }
 
+.topics-page {
+  text-align: center;
+}
+
 .topics-list {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  flex-wrap: wrap;
   text-align: center;
+  gap: 10px;
 }
 
 .topics-item {
@@ -404,7 +409,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   padding: 5px;
 }
 
@@ -423,6 +428,25 @@ ul {
   width: 50%;
 }
 
+.add-topic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+.add-topic-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.add-topic-form textarea{
+  resize: none;
+  height: 10vh;
+}
+
 @media only screen and (min-width: 700px) {
   body {
     font-size: 22px;
@@ -439,6 +463,11 @@ ul {
   .contribute-form textarea {
     height: 50vw;
     font-size: large;
+  }
+
+  .add-topic-form textarea{
+    resize: none;
+    height: 20vh;
   }
 
   .articles-sort {

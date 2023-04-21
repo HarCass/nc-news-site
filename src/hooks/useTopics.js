@@ -12,7 +12,7 @@ const useTopics = () => {
         .finally(() => setIsLoading(false));
     }, []);
 
-    return { topicsData, isLoading };
+    return { topicsData, setTopicsData, isLoading };
 }
 
 export default useTopics;

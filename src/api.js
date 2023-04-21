@@ -52,3 +52,8 @@ export const postArticle = (article) => {
     return newsApi.post('/articles', article)
     .then(res => res.data.article);
 }
+
+export const postTopic = (topic) => {
+    return newsApi.post('/topics', topic)
+    .then(res => res.data.topic);
+}

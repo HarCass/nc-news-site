@@ -4,9 +4,10 @@ import formatStrToTitle from "../utils/formatStrToTitle";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import { Link } from "react-router-dom";
 import { postArticle } from "../api";
+import AddTopic from "./AddTopic";
 
 const Contribute = () => {
-    const { topicsData } = useTopics();
+    const { topicsData, setTopicsData } = useTopics();
     const { activeUser, isLoggedIn } = useContext(ActiveUserContext);
     const [ title, setTitle ] = useState('');
     const [ imgUrl, setImgUrl ] = useState('');
@@ -15,6 +16,7 @@ const Contribute = () => {
     const [hasPosted, setHasPosted] = useState(false);
     const [ isError, setIsError ] = useState(null);
     const [ articleId, setArticleId ] = useState(null);
+    const [ isHidden, setIsHidden ] = useState(true);
 
     const postArticleHandler = (event) => {
         event.preventDefault();
@@ -31,7 +33,7 @@ const Contribute = () => {
             setArticleId(article.article_id);
         })
         .catch(err => {
-            setIsError(err);
+            setIsError(err.response);
             setHasPosted(false);
         });
     }
@@ -44,7 +46,8 @@ const Contribute = () => {
     return <section className="contribute-page">
             <h2>Contribute An article</h2>
             { hasPosted ? <Link to={`/articles/${articleId}`}>Article Posted Successfully, Click Here To View!</Link> : <div className="contribute-post" style={{display: "grid", placeItems: "center"}}>
-                <button>Don't See An Appropriate Topic? Click Here!</button>
+                <button onClick={() => setIsHidden(!isHidden)}>{isHidden ? "Don't See An Appropriate Topic? Click Here!" : "Close Topic Form"}</button>
+                {isHidden ? null : <AddTopic setTopicsData={setTopicsData}></AddTopic>}
                 <form className="contribute-form" onSubmit={postArticleHandler}>
                     <div className="contribute-form-info">
                         <label htmlFor="contribute-title">Title</label>
