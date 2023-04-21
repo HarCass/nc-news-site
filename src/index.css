@@ -182,12 +182,23 @@ ul {
 }
 
 .home {
+  display: grid;
   text-align: center;
+  place-items: center;
+  gap: 10px;
 }
 
 .home select {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.home a:after {
+  background: #EA151F;
+}
+
+.home a:visited {
+  color: #EA151F;
 }
 
 .article-page {
