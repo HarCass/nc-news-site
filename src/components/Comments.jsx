@@ -15,8 +15,8 @@ const Comments = ({articleId}) => {
             {isLoading ? <Loading></Loading> : isHidden ? null : totalComments === 0 ? <h4>No Comments Yet!</h4> : <ul className="comments-list">
                 {commentsData.map(comment => <CommentsCard key={comment.comment_id} comment={comment} ></CommentsCard>)}
             </ul>}
-            { limit === 'all' || limit >= totalComments ? null : <button onClick={() => setLimit('all')}>Load More</button>}
-            <button onClick={ () => setIsHidden(currIsHidden => !currIsHidden)}>{isHidden ? 'Show': 'Hide'} All</button>
+            { isHidden ? null : limit === 'all' || limit >= totalComments ? null : <button onClick={() => setLimit('all')}>Load More</button>}
+            <button className="hide-comments" onClick={ () => setIsHidden(currIsHidden => !currIsHidden)}>{isHidden ? 'Show': 'Hide'} All</button>
         </section>
 }
 
