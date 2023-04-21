@@ -174,7 +174,7 @@ ul {
 
 .page-buttons {
   display: flex;
-  justify-content: space-around;
+  gap: 50px;
 }
 
 .page-count {
@@ -470,6 +470,11 @@ ul {
 }
 .modal-content button {
   margin: 10px;
+}
+
+.user-page {
+  display: grid;
+  place-items: center;
 }
 
 @media only screen and (min-width: 700px) {
