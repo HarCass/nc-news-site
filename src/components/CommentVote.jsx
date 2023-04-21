@@ -43,8 +43,8 @@ const CommentVote = ({comment}) => {
 
     return <div className="comment-votes">
         <p style={{color: comment.votes > -1 ? 'green' : 'red'}}>{comment.votes} {comment.votes > -1 ? <i className="fa fa-thumbs-o-up" aria-hidden="true"></i> : <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>}</p>
-        <button onClick={() => voteHandler(1)} disabled={hasUpvoted}>Upvote</button>
-        <button onClick={() => voteHandler(-1)} disabled={hasDownvoted}>Downvote</button>
+        <button className="upvote" onClick={() => voteHandler(1)} disabled={hasUpvoted}>Upvote</button>
+        <button className="downvote" onClick={() => voteHandler(-1)} disabled={hasDownvoted}>Downvote</button>
         {isError ? <h4>Something Went Wrong With Your Vote!</h4> : null}
     </div>
 }
