@@ -61,3 +61,8 @@ export const postTopic = (topic) => {
 export const delArticleById = (id) => {
     return newsApi.delete(`/articles/${id}`);
 }
+
+export const getUserbyId = (id) => {
+    return newsApi.get(`/users/${id}`)
+    .then(res => res.data.user);
+}

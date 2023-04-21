@@ -6,6 +6,7 @@ import Article from "./components/Article";
 import Topics from "./components/Topics";
 import Users from "./components/Users";
 import Contribute from "./components/Contribute";
+import User from "./components/User";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Route path="/articles/:article_id" element={<Article></Article>}></Route>
         <Route path="/topics" element={<Topics></Topics>}></Route>
         <Route path="/users" element={<Users></Users>}></Route>
-        <Route path="/users/:username" element={<Users></Users>}></Route>
+        <Route path="/users/:username" element={<User></User>}></Route>
         <Route path="/users/:username/contribute" element={<Contribute></Contribute>}></Route>
         <Route path="/*" element={<h2>404: Page Not Found</h2>}></Route>
       </Routes>
