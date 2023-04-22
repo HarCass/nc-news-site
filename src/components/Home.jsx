@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import useUsers from "../hooks/useUsers";
 import { Link } from "react-router-dom";
+import LatestArticles from "./LatestArticles";
 
 const Home = () => {
     const {activeUser, setActiveUser, isLoggedIn , setIsLoggedIn} = useContext(ActiveUserContext);
@@ -43,6 +44,8 @@ const Home = () => {
         <button disabled={!isLoggedIn} onClick={logoutHandler}>Logout</button>
         {isLoggedIn ? <h3>Welcome {activeUser}!</h3> : null}
         {isLoggedIn ? null : <Link to="/signup">Or Sign Up Here!</Link>}
+        <h3>Latest Articles</h3>
+        <LatestArticles></LatestArticles>
     </section>
 }
 

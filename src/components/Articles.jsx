@@ -16,7 +16,7 @@ const Articles = () => {
     const sortBy = searchParams.get('sort_by');
     const order = searchParams.get('order');
     const page = searchParams.get('p');
-    const { articlesData, totalPages, isLoading, isError } = useArticles(page, topic, sortBy, order);
+    const { articlesData, totalPages, isLoading, isError } = useArticles({page, topic, sortBy, order});
 
     return isError ? <h2>{`${isError.status}: ${isError.data.msg}`}</h2> : isLoading ? <Loading/> : <section className="articles-page">
         <h2>Articles</h2>
