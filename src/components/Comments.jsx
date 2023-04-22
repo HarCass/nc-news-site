@@ -13,7 +13,9 @@ const Comments = ({articleId}) => {
             <h3>Comments</h3>
             <CommentForm articleId={articleId} setCommentsData={setCommentsData} ></CommentForm>
             {isLoading ? <Loading></Loading> : isHidden ? null : commentsData.length === 0 ? <h4>No Comments Yet!</h4> : <ul className="comments-list">
-                {commentsData.map(comment => <CommentsCard key={comment.comment_id} comment={comment} ></CommentsCard>)}
+                {commentsData.map(comment => <li key={comment.comment_id}>
+                    <CommentsCard comment={comment} ></CommentsCard>
+                </li>)}
             </ul>}
             { isHidden ? null : limit === 'all' || commentsData.length < 10 ? null : <button onClick={() => setLimit('all')}>Load More</button>}
             <button className="hide-comments" onClick={ () => setIsHidden(currIsHidden => !currIsHidden)}>{isHidden ? 'Show': 'Hide'} All</button>

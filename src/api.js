@@ -71,3 +71,8 @@ export const postUser = (user) => {
     return newsApi.post('/users', user)
     .then(res => res.data.user);
 }
+
+export const getUserCommentsById = (id) => {
+    return newsApi.get(`/users/${id}/comments`)
+    .then(res => res.data.comments);
+}

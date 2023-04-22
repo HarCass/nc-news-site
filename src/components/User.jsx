@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import Loading from "../components/Loading";
 
@@ -10,8 +10,9 @@ const User = () => {
             <h2>{`${userData.username}'s Profile`}</h2>
             <img src={userData.avatar_url} alt={`${userData.username} avatar`}></img>
             <h3>{userData.name}</h3>
-            <h4>View Articles By {userData.username}</h4>
-            <h4>View Comments By {userData.username}</h4>
+            <Link>Articles</Link>
+            <Link to={`/users/${username}/comments`}>Comments</Link>
+            <Link>Edit Profile</Link>
     </section>
 }
 
