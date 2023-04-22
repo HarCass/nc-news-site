@@ -7,6 +7,7 @@ import Topics from "./components/Topics";
 import Users from "./components/Users";
 import Contribute from "./components/Contribute";
 import User from "./components/User";
+import SignUp from "./components/SignUp";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/users" element={<Users></Users>}></Route>
         <Route path="/users/:username" element={<User></User>}></Route>
         <Route path="/users/:username/contribute" element={<Contribute></Contribute>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/*" element={<h2>404: Page Not Found</h2>}></Route>
       </Routes>
     </div>
