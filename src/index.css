@@ -37,7 +37,7 @@ a:after{
   height: 2px;
   left: 50%;
   position: absolute;
-  background: #fff;
+  background: #EA151F;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
@@ -59,6 +59,10 @@ header a {
 
 header a:hover {
   color: white;
+}
+
+header a:after {
+  background: #fff;
 }
 
 button {
@@ -250,7 +254,7 @@ img {
   border-style: ridge;
   border-radius: 5px;
   border-color: black;
-  padding: 5px;
+  padding: 8px;
   height: min-content;
   width: 70vw;
 }
@@ -497,11 +501,14 @@ img {
   max-width: 50vw;
 }
 
+.user-page a {
+  margin-bottom: 10px;
+}
+
 .carousel {
   position: relative;
   overflow: hidden;
   border: #EA151F ridge 10px;
-  color: #EA151F;
   border-radius: 10px;
   width: 75vw;
   height: 80vw;
@@ -537,6 +544,17 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+}
+
+.user-comments-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.user-comments-item {
+  margin-bottom: 50px;
 }
 
 @media only screen and (min-width: 750px) {

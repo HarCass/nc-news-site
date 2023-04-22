@@ -15,10 +15,9 @@ const useArticle = (id) => {
         })
         .catch(err => setIsError(err.response))
         .finally(() => setIsLoading(false));
-    }, [])
+    }, []);
 
     return { articleData, isLoading, isError };
-
 }
 
 export default useArticle;
