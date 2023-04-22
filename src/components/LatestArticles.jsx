@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import useArticles from "../hooks/useArticles";
 import anime from "animejs";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const LatestArticles = () => {
-    const { articlesData: articles } = useArticles({limit: 5});
+    const { articlesData: articles, isLoading } = useArticles({limit: 5});
     const [slide, setSlide] = useState(0);
     const timeRef = useRef(null);
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const LatestArticles = () => {
         });
     }, [slide]);
 
-    return <div className="carousel">
+    return isLoading ? <Loading></Loading> : <div className="carousel">
         {articles.map((article, i) => {
             return <div key={article.article_id} className={`slide ${i === slide ? 'active' : ''}`} onClick={() => navigate(`/articles/${article.article_id}`)}>
                 <h3>{article.title}</h3>
