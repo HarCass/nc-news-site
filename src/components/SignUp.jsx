@@ -44,9 +44,9 @@ const SignUp = () => {
         </ul> : <div className="singup-container">
             <form className="signup-form" onSubmit={signupHandler}>
                 <label htmlFor="signup-name">Name</label>
-                <input id="signup-name" placeholder="e.g. John Doe" value={name} onChange={ev => setName(ev.target.value)}></input>
+                <input id="signup-name" placeholder="e.g. John Doe" required value={name} onChange={ev => setName(ev.target.value)}></input>
                 <label htmlFor="signup-username">Display Name</label>
-                <input id="signup-username" placeholder="e.g. User123" value={username} onChange={ev => setUsername(ev.target.value)}></input>
+                <input id="signup-username" placeholder="e.g. User123" required value={username} onChange={ev => setUsername(ev.target.value)}></input>
                 <label htmlFor="signup-url">Avatar Image URL</label>
                 <input id="signup-url" placeholder="e.g. https://example.com" value={imgUrl} onChange={ev => setImgUrl(ev.target.value)}></input>
                 <button disabled={hasClicked}>Sign Up</button>
