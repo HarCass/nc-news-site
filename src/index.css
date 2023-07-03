@@ -590,6 +590,7 @@ img {
 
   .articles-item img {
     width: max-content;
+    max-width: 33vw;
   }
 
   .article-page {
@@ -624,7 +625,7 @@ img {
   }
 
   .slide img {
-    max-width: max-content;
+    max-width: 700px;
   }
 
   .slide {
