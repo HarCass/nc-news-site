@@ -160,7 +160,7 @@ img {
 }
 
 .articles-item img {
-  width: 75vw;
+  max-width: 33vw;
 }
 
 .articles-stats {
