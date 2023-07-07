@@ -15,11 +15,11 @@ describe('Home', () => {
 
   it('Recieves users and articles from the api', () => {
     cy.wait('@apiArticles').then((req) => {
-      assert.isNotNull(req.response.body);
+      assert.isNotNull(req.response.body.articles);
     });
 
     cy.wait('@apiUsers').then((req) => {
-      assert.isNotNull(req.response.body);
+      assert.isNotNull(req.response.body.users);
     });
   });
 
@@ -40,5 +40,32 @@ describe('Home', () => {
 
     cy.get('.home > :nth-child(4)').click();
     cy.get('.home > a').contains('Or Sign Up Here!');
+  });
+});
+
+describe("Articles", () => {
+  beforeEach(() => {
+    cy.intercept({
+      method: 'GET',
+      url: 'https://hc-nc-news-api.onrender.com/api/articles'
+    }).as('apiArticles');
+
+    cy.intercept({
+      method: 'GET',
+      url: 'https://hc-nc-news-api.onrender.com/api/topics'
+    }).as('apiTopics');
+
+    cy.visit('http://192.168.1.14:5173/articles');
+  });
+
+  it("Recieves Articles and Topics from the API", () => {
+    cy.wait('@apiArticles').then((req) => {
+      assert.isNotNull(req.response.body.articles);
+    });
+
+    cy.wait('@apiTopics').then(req => {
+      console.log(req.response.body);
+      assert.isNotNull(req.response.body.topics);
+    });
   });
 });

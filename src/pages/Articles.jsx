@@ -1,9 +1,9 @@
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useArticles from "../hooks/useArticles";
-import Loading from "./Loading";
-import ArticlesCard from "./ArticlesCard";
-import PageButtons from "./PageButtons";
-import ArticlesSort from "./ArticlesSort";
+import Loading from "../components/Loading";
+import ArticlesCard from "../components/ArticlesCard";
+import PageButtons from "../components/PageButtons";
+import ArticlesSort from "../components/ArticlesSort";
 import { useContext } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 
