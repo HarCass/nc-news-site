@@ -1,11 +1,11 @@
 import { Link, useParams } from "react-router-dom";
-import Loading from "./Loading";
-import Comments from "./Comments";
+import Loading from "../components/Loading";
+import Comments from "../components/Comments";
 import useArticle from "../hooks/useArticle";
 import formatDate from "../utils/formatDate";
 import formatStrToTitle from "../utils/formatStrToTitle";
-import ArticleVote from "./ArticleVote";
-import DeleteArticle from "./DeleteArticle";
+import ArticleVote from "../components/ArticleVote";
+import DeleteArticle from "../components/DeleteArticle";
 import { useState } from "react";
 
 const Article = () => {

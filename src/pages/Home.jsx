@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import useUsers from "../hooks/useUsers";
 import { Link } from "react-router-dom";
-import LatestArticles from "./LatestArticles";
+import LatestArticles from "../components/LatestArticles";
 
 const Home = () => {
     const {activeUser, setActiveUser, isLoggedIn , setIsLoggedIn} = useContext(ActiveUserContext);

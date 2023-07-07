@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Articles from "./components/Articles";
+import Home from "./pages/Home";
+import Articles from "./pages/Articles";
 import Header from "./components/Header";
-import Article from "./components/Article";
-import Topics from "./components/Topics";
-import Users from "./components/Users";
-import Contribute from "./components/Contribute";
-import User from "./components/User";
-import SignUp from "./components/SignUp";
-import UserComments from "./components/UserComments";
+import Article from "./pages/Article";
+import Topics from "./pages/Topics";
+import Users from "./pages/Users";
+import Contribute from "./pages/Contribute";
+import User from "./pages/User";
+import SignUp from "./pages/SignUp";
+import UserComments from "./pages/UserComments";
 
 
 function App() {

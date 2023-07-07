@@ -4,7 +4,7 @@ import formatStrToTitle from "../utils/formatStrToTitle";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import { Link } from "react-router-dom";
 import { postArticle } from "../api";
-import AddTopic from "./AddTopic";
+import AddTopic from "../components/AddTopic";
 
 const Contribute = () => {
     const { topicsData, setTopicsData } = useTopics();

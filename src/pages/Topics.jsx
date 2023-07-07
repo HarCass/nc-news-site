@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useTopics from "../hooks/useTopics";
-import Loading from "./Loading";
-import TopicsCard from "./TopicsCard";
-import AddTopic from "./AddTopic";
+import Loading from "../components/Loading";
+import TopicsCard from "../components/TopicsCard";
+import AddTopic from "../components/AddTopic";
 
 const Topics = () => {
     const {topicsData, setTopicsData, isLoading} = useTopics();

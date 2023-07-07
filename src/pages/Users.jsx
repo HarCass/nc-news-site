@@ -1,5 +1,5 @@
 import useUsers from "../hooks/useUsers";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 import { cardHover, cardHoverEnd } from "../scripts/cardHover";
 import { useNavigate } from "react-router-dom";
 

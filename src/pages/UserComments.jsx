@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useUserComments from "../hooks/useUserComments";
-import CommentsCard from "./CommentsCard";
-import Loading from "./Loading";
+import CommentsCard from "../components/CommentsCard";
+import Loading from "../components/Loading";
 
 const UserComments = () => {
     const { username } = useParams();
