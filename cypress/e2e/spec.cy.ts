@@ -10,16 +10,16 @@ describe('Home', () => {
       url: 'https://hc-nc-news-api.onrender.com/api/users'
     }).as('apiUsers');
 
-    cy.visit('http://192.168.1.14:5173/');
+    cy.visit('http://localhost:5173/');
   });
 
   it('Recieves users and articles from the api', () => {
     cy.wait('@apiArticles').then((req) => {
-      assert.isNotNull(req.response.body.articles);
+      assert.isNotNull(req?.response?.body.articles);
     });
 
     cy.wait('@apiUsers').then((req) => {
-      assert.isNotNull(req.response.body.users);
+      assert.isNotNull(req?.response?.body.users);
     });
   });
 
@@ -55,17 +55,17 @@ describe("Articles", () => {
       url: 'https://hc-nc-news-api.onrender.com/api/topics'
     }).as('apiTopics');
 
-    cy.visit('http://192.168.1.14:5173/articles');
+    cy.visit('http://localhost:5173/articles');
   });
 
   it("Recieves Articles and Topics from the API", () => {
     cy.wait('@apiArticles').then((req) => {
-      assert.isNotNull(req.response.body.articles);
+      assert.isNotNull(req?.response?.body.articles);
     });
 
     cy.wait('@apiTopics').then(req => {
-      console.log(req.response.body);
-      assert.isNotNull(req.response.body.topics);
+      console.log(req?.response?.body);
+      assert.isNotNull(req?.response?.body.topics);
     });
   });
 });
