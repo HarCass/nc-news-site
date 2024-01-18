@@ -1,7 +1,7 @@
 const formatStrToTitle = (str: string) => {
     if (!str.length) return '';
 
-    switch(str) {
+    switch (str) {
         case 'created_at':
             return 'Date';
         case 'comment_count':

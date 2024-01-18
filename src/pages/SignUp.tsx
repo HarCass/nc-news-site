@@ -4,15 +4,17 @@ import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import { useNavigate } from "react-router-dom";
 import { ApiError, ApiErrorResponse, User } from "../types";
 import { Nullable } from "vitest";
+import { useQueryClient } from "@tanstack/react-query";
 
 const SignUp = () => {
+    const client = useQueryClient();
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [newUser, setNewUser] = useState<Nullable<User>>(null);
     const [isError, setIsError] = useState<Nullable<ApiError>>(null);
     const [hasClicked, setHasClicked] = useState(false);
-    const {setActiveUser, isLoggedIn, setIsLoggedIn} = useContext(ActiveUserContext)!;
+    const { setActiveUser, isLoggedIn, setIsLoggedIn } = useContext(ActiveUserContext)!;
     const navigate = useNavigate();
 
     const signupHandler = (event: FormEvent) => {
@@ -25,19 +27,24 @@ const SignUp = () => {
             username,
             avatar_url: imgUrl
         }
-        
+
         postUser(userObj)
-        .then(user => {
-            setNewUser(user);
-            setActiveUser(user.username);
-            localStorage.setItem('activeuser', user.username);
-            setIsLoggedIn(true);
-            navigate(`/users/${user.username}`);
-        })
-        .catch((err: ApiErrorResponse) => {
-            setIsError(err.response);
-            setHasClicked(false);
-        });
+            .then(user => {
+                setNewUser(user);
+                setActiveUser(user.username);
+                localStorage.setItem('activeuser', user.username);
+                setIsLoggedIn(true);
+                client.invalidateQueries({
+                    queryKey: ['users'],
+                    exact: true,
+                    refetchType: 'active'
+                });
+                navigate(`/users/${user.username}`);
+            })
+            .catch((err: ApiErrorResponse) => {
+                setIsError(err.response);
+                setHasClicked(false);
+            });
     }
 
     return isLoggedIn ? <h2>Logout To Sign Up With A New User</h2> : <section className="signup-page">

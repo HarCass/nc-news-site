@@ -1,17 +1,17 @@
-import { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ActiveUserContext } from "../contexts/ActiveUserContext";
 import useUsers from "../hooks/useUsers";
 import { Link } from "react-router-dom";
 import LatestArticles from "../components/LatestArticles";
 
-const Home: FC = () => {
-    const {activeUser, setActiveUser, isLoggedIn , setIsLoggedIn} = useContext(ActiveUserContext)!;
+const Home = () => {
+    const { activeUser, setActiveUser, isLoggedIn, setIsLoggedIn } = useContext(ActiveUserContext)!;
     const [chosenUser, setChosenUser] = useState<string>('');
-    const {usersData} = useUsers();
-    
+    const { data: usersData = [] } = useUsers();
+
     const loginHandler = (event: FormEvent) => {
         event.preventDefault();
-        if (usersData.find(({username}) => username ===  chosenUser)) {
+        if (usersData.find(({ username }) => username === chosenUser)) {
             setActiveUser(chosenUser);
             localStorage.setItem('activeUser', chosenUser);
             setIsLoggedIn(true);
@@ -37,7 +37,7 @@ const Home: FC = () => {
             <label htmlFor="user-selector">Username</label>
             <select id="user-selector" required onChange={selectChangeHandler}>
                 <option>Select User...</option>
-                {usersData.map(({username}) => <option key={username} value={username}>{username}</option>)}
+                {usersData.map(({ username }) => <option key={username} value={username}>{username}</option>)}
             </select>
             <button disabled={isLoggedIn}>Login</button>
         </form>
