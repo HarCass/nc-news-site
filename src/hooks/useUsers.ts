@@ -1,19 +1,12 @@
-import { useEffect, useState } from "react";
 import { getUsers } from "../api";
-import { User } from "../types";
+import { useQuery } from "@tanstack/react-query";
 
 const useUsers = () => {
-    const [usersData, setUsersData] = useState<User[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        setIsLoading(true);
-        getUsers()
-        .then(data => setUsersData(data))
-        .finally(() => setIsLoading(false));
-    }, []);
-
-    return { usersData, isLoading };
+    return useQuery({
+        queryKey: ["users"],
+        queryFn: () => getUsers(),
+        staleTime: 1000 * 60 * 5
+    })
 }
 
 export default useUsers;

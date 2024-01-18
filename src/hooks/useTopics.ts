@@ -1,19 +1,12 @@
-import { useEffect, useState } from "react"
 import { getTopics } from "../api";
-import { Topic } from "../types";
+import { useQuery } from "@tanstack/react-query";
 
 const useTopics = () => {
-    const [topicsData, setTopicsData] = useState<Topic[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        setIsLoading(true);
-        getTopics()
-        .then(data => setTopicsData(data))
-        .finally(() => setIsLoading(false));
-    }, []);
-
-    return { topicsData, setTopicsData, isLoading };
+    return useQuery({
+        queryKey: ["topics"],
+        queryFn: () => getTopics(),
+        staleTime: 1000 * 60 * 5
+    })
 }
 
 export default useTopics;

@@ -3,8 +3,8 @@ import useTopics from "../hooks/useTopics";
 import formatStrToTitle from "../utils/formatStrToTitle";
 import { ArticlesSortProps } from "../types";
 
-const ArticlesSort: FC<ArticlesSortProps> = ({topic, sortBy, order, searchParams, setSearchParams}) => {
-    const {topicsData} = useTopics();
+const ArticlesSort: FC<ArticlesSortProps> = ({ topic, sortBy, order, searchParams, setSearchParams }) => {
+    const { data: topicsData = [] } = useTopics();
 
     const setQuery = (event: ChangeEvent<HTMLSelectElement>, query: string) => {
         document.body.scrollTop = 0;
@@ -32,7 +32,7 @@ const ArticlesSort: FC<ArticlesSortProps> = ({topic, sortBy, order, searchParams
         </select>
         <label htmlFor="topic-select">Topic</label>
         <select id="topic-select" className="articles-select" value={topic || ''} onChange={ev => setQuery(ev, 'topic')}>
-            {topicsData.map(({slug}) => <option value={slug} key={slug}>{formatStrToTitle(slug)}</option>)}
+            {topicsData.map(({ slug }) => <option value={slug} key={slug}>{formatStrToTitle(slug)}</option>)}
             <option value={''}>All</option>
         </select>
         <button onClick={() => setSearchParams('')}>Reset All</button>

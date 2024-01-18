@@ -1,4 +1,4 @@
-import {describe, it, expect} from "vitest";
+import { describe, it, expect } from "vitest";
 import formatDate from "../src/utils/formatDate";
 import formatStrToTitle from "../src/utils/formatStrToTitle";
 

@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react"
 import { getUserCommentsById } from "../api";
-import { Comment, ApiError, ApiErrorResponse } from "../types";
-import { Nullable } from "vitest";
+import { useQuery } from "@tanstack/react-query";
 
 const useUserComments = (id: string) => {
-    const [commentsData, setCommentsData] = useState<Comment[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState<Nullable<ApiError>>(null);
-
-    useEffect(() => {
-        setIsLoading(true);
-        getUserCommentsById(id)
-        .then(data => setCommentsData(data))
-        .catch((err: ApiErrorResponse) => setIsError(err.response))
-        .finally(() => setIsLoading(false));
-    }, []);
-
-    return { commentsData, isLoading, isError };
+    return useQuery({
+        queryKey: [`${id}Comments`, id],
+        queryFn: () => getUserCommentsById(id),
+        staleTime: 1000 * 60 * 5
+    })
 }
 
 export default useUserComments;

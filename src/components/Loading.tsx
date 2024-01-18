@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import loadingAnimation from "../scripts/loading.js"
 
-const Loading = ()=> {
+const Loading = () => {
     useEffect(() => {
         loadingAnimation();
     }, [])

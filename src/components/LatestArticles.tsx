@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import { Nullable } from "vitest";
 
 const LatestArticles = () => {
-    const {data:{articles = []} = {}, isLoading,} = useArticles({limit: 5});
+    const { data: { articles = [] } = {}, isLoading, } = useArticles({ limit: 5 });
     const [slide, setSlide] = useState(0);
     const timeRef = useRef<Nullable<NodeJS.Timeout>>(null);
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ const LatestArticles = () => {
     useEffect(() => {
         if (articles.length) {
             timeRef.current = setInterval(() => {
-            setSlide(currSlide => (currSlide + 1) % articles.length);
+                setSlide(currSlide => (currSlide + 1) % articles.length);
             }, 5000)
             return () => clearInterval(timeRef.current as NodeJS.Timeout);
         }

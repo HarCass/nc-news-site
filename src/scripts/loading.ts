@@ -9,6 +9,6 @@ const loadingAnimation = () => {
         duration: 1000,
         loop: true
     });
-} 
+}
 
 export default loadingAnimation;
